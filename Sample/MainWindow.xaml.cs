@@ -29,6 +29,7 @@ namespace Sample
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        
         static string FolderLocation = "YourLocation";
         static string PictureFile = "YourImageName";
         static string imageURI = FolderLocation + "\\" + PictureFile;
@@ -36,6 +37,7 @@ namespace Sample
         public MainWindow()
         {
             this.InitializeComponent();
+            //if the image exist make it the source of the Image object
             if (File.Exists(imageURI))
             {
                 Img.Source = null;
@@ -45,6 +47,12 @@ namespace Sample
 
         }
 
+        /// <summary>
+        /// this is where i need help. When i click UI_Click it keeps the older Image instead of the newer one. 
+        /// I need to remove the newer Image as the image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UI_Click(object sender, RoutedEventArgs e)
         {
             if (File.Exists(imageURI))
@@ -56,6 +64,11 @@ namespace Sample
 
         }
 
+        /// <summary>
+        /// this fucntion takes a picture and replaces the old one.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void TNI_ClickAsync(object sender, RoutedEventArgs e)
         {
             var devices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
